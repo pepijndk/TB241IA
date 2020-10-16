@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.main;
+package com.example.myapplication.ui.profile;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,23 +16,22 @@ import com.example.myapplication.R;
 
 public class ProfileFragment extends Fragment {
 
-    private MainViewModel mViewModel;
+    private ProfileViewModel mViewModel;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         // TODO: Use the ViewModel
     }
 

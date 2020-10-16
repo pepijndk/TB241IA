@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".trainerProfile">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="113dp"
+        android:layout_height="83dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/trainerName"
+        android:layout_width="306dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="20dp"
+        android:text="Firstname Lastname"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/trainerLocation"
+        android:layout_width="306dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="12dp"
+        android:text="Location"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trainerName" />
+
+    <Button
+        android:id="@+id/buttonReport"
+        android:layout_width="118dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:text="Report"
+        app:layout_constraintEnd_toEndOf="@+id/trainerName"
+        app:layout_constraintTop_toBottomOf="@+id/trainerLocation" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="118dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:text="Save"
+        app:layout_constraintStart_toStartOf="@+id/trainerName"
+        app:layout_constraintTop_toBottomOf="@+id/trainerLocation" />
+
+    <TextView
+        android:id="@+id/textData"
+        android:layout_width="141dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="Data"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/trainerName"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSave" />
+
+    <TextView
+        android:id="@+id/textUpcoming"
+        android:layout_width="298dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:text="Upcoming sessions"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/trainerName"
+        app:layout_constraintTop_toBottomOf="@+id/textPrice" />
+
+    <TextView
+        android:id="@+id/textGender"
+        android:layout_width="66dp"
+        android:layout_height="30dp"
+        android:text="Gender:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/textData" />
+
+    <TextView
+        android:id="@+id/inputGender"
+        android:layout_width="74dp"
+        android:layout_height="28dp"
+        android:text="None"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/textData" />
+
+    <TextView
+        android:id="@+id/inputSport"
+        android:layout_width="74dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="28dp"
+        android:text="None"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/textData" />
+
+    <TextView
+        android:id="@+id/inputPrice"
+        android:layout_width="74dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="56dp"
+        android:text="None"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/textData" />
+
+    <TextView
+        android:id="@+id/textSport"
+        android:layout_width="68dp"
+        android:layout_height="29dp"
+        android:text="Sport:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/textGender" />
+
+    <TextView
+        android:id="@+id/textPrice"
+        android:layout_width="66dp"
+        android:layout_height="26dp"
+        android:text="Price:"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/textSport" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="412dp"
+        android:layout_height="265dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUpcoming" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
