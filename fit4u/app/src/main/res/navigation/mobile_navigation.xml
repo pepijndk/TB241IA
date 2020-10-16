@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.example.myapplication.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_trainer_profile"
+            app:destination="@id/navigation_trainer_profile" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_trainers"
         android:name="com.example.myapplication.ui.trainers.TrainersFragment"
@@ -26,5 +30,10 @@
         android:name="com.example.myapplication.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_trainer_profile"
+        android:name="com.example.myapplication.TrainerProfileFragment"
+        android:label="fragment_trainer_profile"
+        tools:layout="@layout/fragment_trainer_profile" />
 
 </navigation>
