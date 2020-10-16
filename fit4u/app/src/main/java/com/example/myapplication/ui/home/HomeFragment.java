@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.example.myapplication.R;
 
@@ -27,9 +31,16 @@ public class HomeFragment extends Fragment {
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                textView.setText("bla");
             }
         });
         return root;
+    }
+
+    public void buttonClicked(View view) {
+//        Log.d("test", "test");
+        NavController navController = Navigation.findNavController(super.getActivity(), R.id.nav_host_fragment);
+
+
     }
 }
