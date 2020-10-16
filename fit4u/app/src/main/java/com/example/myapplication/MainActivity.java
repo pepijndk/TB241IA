@@ -38,9 +38,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void buttonClicked(View view) {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavDirections action = HomeFragmentDirections.actionNavigationHomeToNavigationTrainerProfile();
-        navController.navigate(action);
+        ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
+
+        // testing
+        dbHelper.getNearbyTrainers();
+
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        NavDirections action = HomeFragmentDirections.actionNavigationHomeToNavigationTrainerProfile();
+//        navController.navigate(action);
     }
 
 }

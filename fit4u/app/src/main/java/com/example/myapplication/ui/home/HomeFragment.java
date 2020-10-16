@@ -38,7 +38,6 @@ public class HomeFragment extends Fragment {
     }
 
     public void buttonClicked(View view) {
-//        Log.d("test", "test");
         NavController navController = Navigation.findNavController(super.getActivity(), R.id.nav_host_fragment);
 
 
