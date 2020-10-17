@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
 
         // testing
-        dbHelper.getNearbyTrainers();
+        dbHelper.getUpcomingTrainingsOfSporter(5000);
 
 //        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 //        NavDirections action = HomeFragmentDirections.actionNavigationHomeToNavigationTrainerProfile();

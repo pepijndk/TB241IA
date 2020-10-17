@@ -15,6 +15,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 
+import kotlin.text.UStringsKt;
+
 public class ExterneDbHelper {
     private class DbTask extends AsyncTask<String, Void, String> {
         @Override
@@ -40,10 +42,12 @@ public class ExterneDbHelper {
     // kijk ff met welke tables je moet joinen. Bijv bij getFavouriteTrainers niet de id's returnen maar de gegevens van de trainers met die id's!!
 
     getTrainerProfile(int id) profiel van gebruiker met id
-    getUser(int id) gegevens gebruiker
-    getUpcomingTrainingsOfTrainer(int id) alle sessies van trainer in de toekomst (join met trainingslot want beschrijving en datum moet ook meekomen)
     getFavouriteTrainers(int id) alle favorieten trainers van gebruiker met id
+    getUser(int id) gegevens gebruiker
+    getNearbyTrainers()
     getUpcomingTrainingsOfSporter(int id) alle komende trainingen van sporter met id
+
+    getUpcomingTrainingsOfTrainer(int id) alle sessies van trainer in de toekomst (join met trainingslot want beschrijving en datum moet ook meekomen)
     saveData(String naam, Gender, locatie etc etc (alle dingen van een gebruiker)) sla de aangepaste gegevens van het profiel op
     saveAanvraag(int trainingslot_id, tijd, sporter_id)
 
@@ -52,20 +56,30 @@ public class ExterneDbHelper {
 
      */
 
-
+    public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslach_id) {
+        return rawQuery("INSERT INTO `gebruiker` (`Gebruiker_ID`, `Naam`, `Email`, `Wachtwoord`, `Leeftijd`, `Geslacht_id`, `Adres`, `Profielfoto`, `Bio`, `Geslacht_Geslacht_id`)");
+    }
 
     // todo
-    public JSONObject getUser(int id) {
-//        rawQuery()
-        return null;
+    public JSONArray getUser(int gebruikerId) {
+        return rawQuery("SELECT * FROM gebruiker WHERE Gebruiker_id = " + gebruikerId);
     }
 
-    // Returns all trainers
+    public JSONArray getTrainerProfile(int trainerId) {
+        return rawQuery("SELECT * FROM trainer WHERE Trainer_id = " + trainerId);
+    }
+
+    public JSONArray getFavouriteTrainers(int sporterId){
+        return rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker WHERE trainer.Trainer_id = favorietetrainer.Trainer_id AND gebruiker.Gebruiker_ID = trainer.Gebruiker_id AND Sporter_id = " + sporterId); // ook nog joinen met gebruiker
+    }
+
     public JSONArray getNearbyTrainers() {
-        return rawQuery("SELECT * FROM trainer, gebruiker WHERE trainer.Gebruiker_id = gebruiker.Gebruiker_ID");
+        return rawQuery("SELECT * FROM trainer");
     }
 
-
+    public JSONArray getUpcomingTrainingsOfSporter(int sporterId) {
+        return rawQuery("SELECT * FROM training, aanvraag, trainingslot WHERE trainingslot.Trainingslot_id = aanvraag.Trainingslot_id AND aanvraag.Aanvraag_id = training.Aanvraag_id AND Sporter_id = " + sporterId);
+    }
 
 
 
