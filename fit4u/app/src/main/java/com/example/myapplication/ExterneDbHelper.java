@@ -54,20 +54,32 @@ public class ExterneDbHelper {
 
 
 
+    public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslach_id) {
+        return rawQuery("INSERT INTO `gebruiker` ( " + Gebruiker_ID + " , `Naam`, `Email`, `Wachtwoord`, `Leeftijd`, `Geslacht_id`, `Adres`, `Profielfoto`, `Bio`, `Geslacht_Geslacht_id`)");
+    }
+
     // todo
-    public JSONObject getUser(int id) {
-//        rawQuery()
-        return null;
+    public JSONArray getUser(int gebruikerId) {
+        return rawQuery("SELECT * FROM gebruiker WHERE Gebruiker_id = " + gebruikerId);
     }
 
-    // Returns all trainers
+    public JSONArray getTrainerProfile(int trainerId) {
+        return rawQuery("SELECT * FROM trainer WHERE Trainer_id = " + trainerId);
+    }
+
+    public JSONArray getFavouriteTrainers(int sporterId){
+        return rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker WHERE trainer.Trainer_id = favorietetrainer.Trainer_id AND gebruiker.Gebruiker_ID = trainer.Gebruiker_id AND Sporter_id = " + sporterId); // ook nog joinen met gebruiker
+    }
+
     public JSONArray getNearbyTrainers() {
-        return rawQuery("SELECT * FROM trainer, gebruiker WHERE trainer.Gebruiker_id = gebruiker.Gebruiker_ID");
+        return rawQuery("SELECT * FROM trainer");
     }
 
+    public JSONArray getUpcomingTrainingsOfSporter(int sporterId) {
+        return rawQuery("SELECT * FROM training, aanvraag, trainingslot WHERE trainingslot.Trainingslot_id = aanvraag.Trainingslot_id AND aanvraag.Aanvraag_id = training.Aanvraag_id AND Sporter_id = " + sporterId);
+    }
 
-
-
+    
 
     // Private functions, do not touch
     private String sendHttpRequest(String url) {
