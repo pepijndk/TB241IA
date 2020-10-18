@@ -4,8 +4,8 @@ public class Trainer extends Gebruiker{
     private int idTrainer;
     private int uurloon;
 
-    public Trainer(int id, String naam, String email, int leeftijd, int geslacht, String adres, int idTrainer, int uurloon) {
-        super(id, naam, email, leeftijd, geslacht, adres);
+    public Trainer(int id, String naam, String email, int leeftijd, int geslacht, String adres, String bio,int idTrainer, int uurloon) {
+        super(id, naam, email, leeftijd, geslacht, adres, bio);
         this.idTrainer = idTrainer;
         this.uurloon = uurloon;
     }

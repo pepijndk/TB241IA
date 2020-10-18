@@ -71,16 +71,32 @@ public class ExterneDbHelper {
     }
 
     // todo
-    public JSONArray getUser(int gebruikerId) {
-        return rawQuery("SELECT * FROM gebruiker WHERE Gebruiker_id = " + gebruikerId);
+    public Gebruiker getUser(int gebruikerId) throws JSONException {
+        JSONArray arr = rawQuery("SELECT * FROM gebruiker WHERE Gebruiker_id = " + gebruikerId);
+        JSONObject obj= (JSONObject) arr.get(0);
+
+        int id = (int) obj.getInt("Gebruiker_ID");
+        String naam = (String) obj.get("Naam");
+        String email= (String) obj.get("Email");
+        int leeftijd = (int) obj.getInt("Leeftijd");
+        int geslacht = (int) obj.getInt("Geslacht_id");
+        String adres = (String) obj.get("Adres");
+        String bio = "";
+        if (!obj.isNull("bio")) bio = (String) obj.get("Bio");
+        return new Gebruiker(id, naam, email, leeftijd, geslacht, adres, bio);
+
+
     }
 
     public JSONArray getTrainerProfile(int trainerId) {
         return rawQuery("SELECT * FROM trainer WHERE Trainer_id = " + trainerId);
     }
 
-    public ArrayList<Trainer> getFavouriteTrainers(int sporterId) throws JSONException {
-        JSONArray arr =  rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker WHERE trainer.Trainer_id = favorietetrainer.Trainer_id AND gebruiker.Gebruiker_ID = trainer.Gebruiker_id AND Sporter_id = " + sporterId); // ook nog joinen met gebruiker
+    public ArrayList<Trainer> getFavouriteTrainers(int sporterId) throws JSONException { // deze moet gedaan worden met een gebruiker id
+        JSONArray arr =  rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker, sporter " +
+                "WHERE trainer.Trainer_id = favorietetrainer.Trainer_id " +
+                "AND gebruiker.Gebruiker_ID = trainer.Gebruiker_id " +
+                "AND sporter.Sporter_id = " + sporterId); // ook nog joinen met gebruiker
         return null;
 
     }
@@ -92,15 +108,17 @@ public class ExterneDbHelper {
         for (int i = 0; i < arr.length(); i++) {
             JSONObject obj= (JSONObject) arr.get(i);
 
-            int id = (int) obj.getInt("Gebruiker_id");
+            int id = (int) obj.getInt("Gebruiker_ID");
             String naam = (String) obj.get("Naam");
             String email= (String) obj.get("Email");
             int leeftijd = (int) obj.getInt("Leeftijd");
             int geslacht = (int) obj.getInt("Geslacht_id");
             String adres = (String) obj.get("Adres");
+            String bio = "";
+            if (!obj.isNull("bio")) bio = (String) obj.get("Bio");
             int idTrainer = (int) obj.getInt("Trainer_id");
             int uurloon = (int) obj.getInt("Uurloon");
-            res.add(new Trainer(id, naam, email, leeftijd, geslacht, adres, idTrainer, uurloon));
+            res.add(new Trainer(id, naam, email, leeftijd, geslacht, adres, bio, idTrainer, uurloon));
         }
     return res;
     }

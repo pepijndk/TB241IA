@@ -7,15 +7,17 @@ public class Gebruiker {
     private int leeftijd;
     private int geslacht;
     private String adres;
+    private String bio;
 
 
-    public Gebruiker(int id, String naam, String email, int leeftijd, int geslacht, String adres) {
+    public Gebruiker(int id, String naam, String email, int leeftijd, int geslacht, String adres, String bio) {
         this.id = id;
         this.naam = naam;
         this.email = email;
         this.leeftijd = leeftijd;
         this.geslacht = geslacht;
         this.adres = adres;
+        this.bio = bio;
     }
 
     public int getId() {
@@ -64,5 +66,13 @@ public class Gebruiker {
 
     public void setAdres(String adres) {
         this.adres = adres;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.adres = bio;
     }
 }

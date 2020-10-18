@@ -11,10 +11,27 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.ExterneDbHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.Trainer;
+import com.example.myapplication.TrainerAdapter;
+import com.example.myapplication.ui.home.HomeViewModel;
+
+import org.json.JSONException;
+
+import java.util.List;
 
 public class TrainersFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private HomeViewModel homeViewModel;
+    private List<Trainer> trainers;
+
 
     private TrainersViewModel trainersViewModel;
 
@@ -22,14 +39,26 @@ public class TrainersFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         trainersViewModel =
                 new ViewModelProvider(this).get(TrainersViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        trainersViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        View root = inflater.inflate(R.layout.fragment_trainers, container, false);
+
+        ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
+        try {
+            trainers = dbHelper.getNearbyTrainers();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        recyclerView = (RecyclerView) root.findViewById(R.id.favouriteTrainerListView);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(root.getContext()); // may be wrong
+        recyclerView.setLayoutManager(layoutManager);
+
+        mAdapter = new TrainerAdapter(trainers);
+        recyclerView.setAdapter(mAdapter);
+
         return root;
     }
 }

@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="@+id/textHeader"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/textHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/textMail" />
 
     <EditText
         android:id="@+id/inputBio"
@@ -47,15 +47,15 @@
         app:layout_constraintTop_toBottomOf="@+id/inputCity" />
 
     <EditText
-        android:id="@+id/inputDate"
+        android:id="@+id/inputAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Date"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/inputName" />
+        android:hint="Age"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/inputBio"
+        app:layout_constraintTop_toBottomOf="@+id/inputBio" />
 
     <EditText
         android:id="@+id/inputCity"
@@ -68,29 +68,27 @@
         app:layout_constraintEnd_toEndOf="@+id/textHeader"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/inputSport" />
-
-    <EditText
-        android:id="@+id/inputSport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Sport"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/textHeader"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textHeader"
         app:layout_constraintTop_toBottomOf="@+id/inputGender" />
 
     <Spinner
         android:id="@+id/inputGender"
         android:layout_width="211dp"
         android:layout_height="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:entries="@array/genders"
         app:layout_constraintEnd_toEndOf="@+id/textHeader"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/inputDate" />
+        app:layout_constraintTop_toBottomOf="@+id/inputName" />
+
+    <TextView
+        android:id="@+id/textMail"
+        android:layout_width="204dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textHeader"
+        app:layout_constraintTop_toBottomOf="@+id/textHeader" />
 </androidx.constraintlayout.widget.ConstraintLayout>

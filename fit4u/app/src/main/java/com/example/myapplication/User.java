@@ -5,7 +5,7 @@ public class User {
 
     public static int getId() {
         if (userId == 0) {
-            return 1001;
+            return 1000;
         }
         else return userId;
     }
