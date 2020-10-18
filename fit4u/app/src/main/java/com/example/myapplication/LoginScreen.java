@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginScreen extends AppCompatActivity {
 
@@ -34,10 +38,26 @@ public class LoginScreen extends AppCompatActivity {
 
                 ExterneDbHelper dbHandler = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
 
-                String passwordDb = dbHandler.getPassword("test@gmail.com");
+                JSONObject user = dbHandler.getPassword(inputEmailadress);
+                if (user == null) {
+                    Toast.makeText(LoginScreen.this, "User not in database", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                if (inputPassword.equals(passwordDb)) {
+                String passwdDb = null;
+                String idDb = null;
+
+                try {
+                    idDb = user.getString("Gebruiker_ID");
+                    passwdDb = user.getString("Wachtwoord");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(LoginScreen.this, "User not in database", Toast.LENGTH_SHORT).show();
+                }
+
+                if (inputPassword.equals(passwdDb)) {
                     Intent intent = new Intent(LoginScreen.this, MainActivity.class);
+                    User.setId(Integer.parseInt(idDb));
                     startActivity(intent);
 
                 } else {

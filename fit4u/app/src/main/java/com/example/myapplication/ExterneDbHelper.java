@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -14,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ExterneDbHelper {
     private class DbTask extends AsyncTask<String, Void, String> {
@@ -52,11 +54,16 @@ public class ExterneDbHelper {
 
      */
 
-    public String getPassword(String emailadress) {
-        JSONArray arr = rawQuery("SELECT Wachtwoord FROM gebruiker WHERE Email = " + emailadress);
-        String res = arr.toString();
+    public JSONObject getPassword(String emailadress) {
+        JSONArray arr = rawQuery("SELECT * FROM gebruiker WHERE Email = '" + emailadress + "'"); // SELECT * FROM GEBRUIKER where gebruiker.Email = 'pepijn@gmail.com'
+        JSONObject obj = null;
+        try {
+            obj = arr.getJSONObject(0); // .getString("Wachtwoord");
+        } catch (JSONException e) {
+            return null;
+        }
         // return "ww123"
-        return res;
+        return obj;
     }
 
     public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslach_id) {
@@ -72,12 +79,30 @@ public class ExterneDbHelper {
         return rawQuery("SELECT * FROM trainer WHERE Trainer_id = " + trainerId);
     }
 
-    public JSONArray getFavouriteTrainers(int sporterId){
-        return rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker WHERE trainer.Trainer_id = favorietetrainer.Trainer_id AND gebruiker.Gebruiker_ID = trainer.Gebruiker_id AND Sporter_id = " + sporterId); // ook nog joinen met gebruiker
+    public ArrayList<Trainer> getFavouriteTrainers(int sporterId) throws JSONException {
+        JSONArray arr =  rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker WHERE trainer.Trainer_id = favorietetrainer.Trainer_id AND gebruiker.Gebruiker_ID = trainer.Gebruiker_id AND Sporter_id = " + sporterId); // ook nog joinen met gebruiker
+        return null;
+
     }
 
-    public JSONArray getNearbyTrainers() {
-        return rawQuery("SELECT * FROM trainer");
+    public ArrayList<Trainer> getNearbyTrainers() throws JSONException {
+        JSONArray arr =  rawQuery("SELECT * FROM trainer, gebruiker WHERE trainer.Gebruiker_id = gebruiker.Gebruiker_ID");
+
+        ArrayList<Trainer> res = new ArrayList<>();
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj= (JSONObject) arr.get(i);
+
+            int id = (int) obj.getInt("Gebruiker_id");
+            String naam = (String) obj.get("Naam");
+            String email= (String) obj.get("Email");
+            int leeftijd = (int) obj.getInt("Leeftijd");
+            int geslacht = (int) obj.getInt("Geslacht_id");
+            String adres = (String) obj.get("Adres");
+            int idTrainer = (int) obj.getInt("Trainer_id");
+            int uurloon = (int) obj.getInt("Uurloon");
+            res.add(new Trainer(id, naam, email, leeftijd, geslacht, adres, idTrainer, uurloon));
+        }
+    return res;
     }
 
     public JSONArray getUpcomingTrainingsOfSporter(int sporterId) {

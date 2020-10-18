@@ -15,31 +15,56 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.ExterneDbHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.Trainer;
+import com.example.myapplication.TrainerAdapter;
+
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     private HomeViewModel homeViewModel;
+    private List<Trainer> trainers;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText("bla");
-            }
-        });
+
+        ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
+        try {
+            trainers = dbHelper.getNearbyTrainers();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        recyclerView = (RecyclerView) root.findViewById(R.id.trainerView);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        mAdapter = new TrainerAdapter(trainers);
+        recyclerView.setAdapter(mAdapter);
+
+
         return root;
     }
 
     public void buttonClicked(View view) {
         NavController navController = Navigation.findNavController(super.getActivity(), R.id.nav_host_fragment);
-
-
     }
 }
+
