@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 16 okt 2020 om 14:27
--- Serverversie: 10.4.14-MariaDB
--- PHP-versie: 7.4.10
+-- Generation Time: Oct 17, 2020 at 04:02 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fit`
+-- Database: `fit4udb2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `aanvraag`
+-- Table structure for table `aanvraag`
 --
 
 CREATE TABLE `aanvraag` (
@@ -35,16 +35,21 @@ CREATE TABLE `aanvraag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `aanvraag`
+-- Dumping data for table `aanvraag`
 --
 
 INSERT INTO `aanvraag` (`Aanvraag_id`, `Sporter_id`, `Trainingslot_id`, `Tijdstip_aanvraag`) VALUES
-(1, 5000, 1, '2020-10-09 15:24:32.000000');
+(1, 5000, 1, '2020-10-09 15:24:32.000000'),
+(2, 5000, 2, '2020-10-18 12:22:31.487000'),
+(3, 5000, 7, '2020-10-18 12:21:31.687000'),
+(4, 5001, 7, '2020-10-19 13:49:31.647000'),
+(5, 5001, 10, '2020-10-22 15:49:31.000000'),
+(6, 5001, 5, '2020-10-19 15:49:31.000000');
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `favorietetrainer`
+-- Table structure for table `favorietetrainer`
 --
 
 CREATE TABLE `favorietetrainer` (
@@ -54,16 +59,20 @@ CREATE TABLE `favorietetrainer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `favorietetrainer`
+-- Dumping data for table `favorietetrainer`
 --
 
 INSERT INTO `favorietetrainer` (`Favoriet_id`, `Sporter_id`, `Trainer_id`) VALUES
-(1, 5000, 6001);
+(1, 5000, 6001),
+(2, 5001, 6001),
+(3, 5001, 6002),
+(4, 5000, 6003),
+(5, 5000, 6002);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `gebruiker`
+-- Table structure for table `gebruiker`
 --
 
 CREATE TABLE `gebruiker` (
@@ -80,18 +89,21 @@ CREATE TABLE `gebruiker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `gebruiker`
+-- Dumping data for table `gebruiker`
 --
 
 INSERT INTO `gebruiker` (`Gebruiker_ID`, `Naam`, `Email`, `Wachtwoord`, `Leeftijd`, `Geslacht_id`, `Adres`, `Profielfoto`, `Bio`, `Geslacht_Geslacht_id`) VALUES
 (1000, 'Job vd Hoek', 'job@gmail.com', 'ww123', 20, 1, 'Jacoba v Beijerlaan 89', NULL, NULL, 1),
 (1001, 'Pepijn de Kruijff', 'pepijn@gmail.com', 'ww124', 21, 1, 'Phoenixstraat 30', NULL, NULL, 1),
-(1002, 'Isaac Hall', 'isaac@gmail.com', 'ww125', 21, 1, 'E du perronlaan 36', NULL, NULL, 1);
+(1002, 'Isaac Hall', 'isaac@gmail.com', 'ww125', 21, 1, 'E du perronlaan 36', NULL, NULL, 1),
+(1003, 'Jasper ter Horst', 'jasperterhorst@gmail', 'pass234', 19, 1, 'Dwarsstraat 23', NULL, 'Ik ben op zoek naar een personal trainer, maar ben door mijn werk niet consistent op dezelfde momenten beschikbaar om te trainen.', 1),
+(1004, 'Paul Post', 'paulpost@hotmail.com', 'Post0456.', 33, 1, 'Fluwelensingel 124a', NULL, NULL, 1),
+(1005, 'Fredje Flintstone', 'fredflint@knpmail.nl', 'xkO28>d', 41, 2, 'Klaverhoeve 15', NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `geslacht`
+-- Table structure for table `geslacht`
 --
 
 CREATE TABLE `geslacht` (
@@ -100,7 +112,7 @@ CREATE TABLE `geslacht` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `geslacht`
+-- Dumping data for table `geslacht`
 --
 
 INSERT INTO `geslacht` (`Geslacht_id`, `Geslacht`) VALUES
@@ -110,28 +122,7 @@ INSERT INTO `geslacht` (`Geslacht_id`, `Geslacht`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `notities`
---
-
-CREATE TABLE `notities` (
-  `id` char(36) NOT NULL,
-  `titel` varchar(36) NOT NULL,
-  `beschrijving` varchar(36) NOT NULL,
-  `datum` varchar(36) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Gegevens worden geëxporteerd voor tabel `notities`
---
-
-INSERT INTO `notities` (`id`, `titel`, `beschrijving`, `datum`) VALUES
-('8bbdda9e-ad8f-4f97-8642-16b2e2079e0c', 'aab', 'aac', 'aad'),
-('ab312720-286c-4966-a554-d3751800d335', 'weq', 'qweq', 'eqweqe');
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `report`
+-- Table structure for table `report`
 --
 
 CREATE TABLE `report` (
@@ -145,7 +136,7 @@ CREATE TABLE `report` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `report`
+-- Dumping data for table `report`
 --
 
 INSERT INTO `report` (`Report_id`, `Sporter_id`, `Trainer_id`, `Beschrijving`, `Status_id`, `Aanvraag_id`, `Datum_indiening`) VALUES
@@ -154,7 +145,7 @@ INSERT INTO `report` (`Report_id`, `Sporter_id`, `Trainer_id`, `Beschrijving`, `
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `sporter`
+-- Table structure for table `sporter`
 --
 
 CREATE TABLE `sporter` (
@@ -163,7 +154,7 @@ CREATE TABLE `sporter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `sporter`
+-- Dumping data for table `sporter`
 --
 
 INSERT INTO `sporter` (`Sporter_id`, `Gebruiker_id`) VALUES
@@ -173,7 +164,7 @@ INSERT INTO `sporter` (`Sporter_id`, `Gebruiker_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `status`
+-- Table structure for table `status`
 --
 
 CREATE TABLE `status` (
@@ -182,7 +173,7 @@ CREATE TABLE `status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `status`
+-- Dumping data for table `status`
 --
 
 INSERT INTO `status` (`Status_id`, `Status_naam`) VALUES
@@ -192,7 +183,7 @@ INSERT INTO `status` (`Status_id`, `Status_naam`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `trainer`
+-- Table structure for table `trainer`
 --
 
 CREATE TABLE `trainer` (
@@ -205,16 +196,18 @@ CREATE TABLE `trainer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `trainer`
+-- Dumping data for table `trainer`
 --
 
 INSERT INTO `trainer` (`Trainer_id`, `Uurloon`, `Gebruiker_id`, `KVK_nummer`, `Geverifieerd`, `Gemiddelde review`) VALUES
-(6001, 13, 1002, NULL, NULL, NULL);
+(6001, 13, 1002, NULL, NULL, NULL),
+(6002, 13, 1003, NULL, NULL, 4.8),
+(6003, 10, 1004, NULL, NULL, 4.2);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `training`
+-- Table structure for table `training`
 --
 
 CREATE TABLE `training` (
@@ -225,16 +218,18 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `training`
+-- Dumping data for table `training`
 --
 
 INSERT INTO `training` (`Training_id(255)`, `Aanvraag_id`, `Afgerond`, `Beoordeling`) VALUES
-(1, 1, 1, 5);
+(1, 1, 1, 5),
+(2, 2, 0, 5),
+(3, 3, 0, 3);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `trainingslot`
+-- Table structure for table `trainingslot`
 --
 
 CREATE TABLE `trainingslot` (
@@ -246,18 +241,28 @@ CREATE TABLE `trainingslot` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `trainingslot`
+-- Dumping data for table `trainingslot`
 --
 
 INSERT INTO `trainingslot` (`Trainingslot_id`, `Trainer_id`, `Datum`, `Duur`, `Beschrijving`) VALUES
-(1, 6001, '2020-10-10 15:23:54.000000', 2, 'aerobics');
+(1, 6001, '2020-10-10 15:23:54.000000', 2, 'aerobics'),
+(2, 6001, '2020-10-22 13:45:00.094000', 2, 'football'),
+(3, 6001, '2020-10-25 17:30:00.094000', 2, 'football'),
+(4, 6001, '2020-10-28 11:15:00.094000', 2, 'football'),
+(5, 6002, '2020-10-21 10:30:00.094000', 1, 'back'),
+(6, 6002, '2020-10-23 07:45:00.094000', 1, 'back'),
+(7, 6002, '2020-10-27 18:45:00.094000', 2, 'frontal cortex'),
+(8, 6003, '2020-10-24 20:00:00.094000', 2, 'squash'),
+(9, 6003, '2020-10-25 13:00:00.094000', 1, 'squash'),
+(10, 6003, '2020-10-26 10:00:00.094000', 2, 'squash'),
+(11, 6003, '2020-10-27 11:45:00.094000', 2, 'squash');
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `aanvraag`
+-- Indexes for table `aanvraag`
 --
 ALTER TABLE `aanvraag`
   ADD PRIMARY KEY (`Aanvraag_id`),
@@ -266,7 +271,7 @@ ALTER TABLE `aanvraag`
   ADD KEY `fk_Aanvraag_Trainingslot1_idx` (`Trainingslot_id`);
 
 --
--- Indexen voor tabel `favorietetrainer`
+-- Indexes for table `favorietetrainer`
 --
 ALTER TABLE `favorietetrainer`
   ADD PRIMARY KEY (`Favoriet_id`),
@@ -275,26 +280,20 @@ ALTER TABLE `favorietetrainer`
   ADD KEY `fk_FavorieteTrainer_Trainer1_idx` (`Trainer_id`);
 
 --
--- Indexen voor tabel `gebruiker`
+-- Indexes for table `gebruiker`
 --
 ALTER TABLE `gebruiker`
   ADD PRIMARY KEY (`Gebruiker_ID`),
   ADD KEY `fk_Gebruiker_Geslacht` (`Geslacht_Geslacht_id`);
 
 --
--- Indexen voor tabel `geslacht`
+-- Indexes for table `geslacht`
 --
 ALTER TABLE `geslacht`
   ADD PRIMARY KEY (`Geslacht_id`) USING BTREE;
 
 --
--- Indexen voor tabel `notities`
---
-ALTER TABLE `notities`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `report`
+-- Indexes for table `report`
 --
 ALTER TABLE `report`
   ADD PRIMARY KEY (`Report_id`),
@@ -305,7 +304,7 @@ ALTER TABLE `report`
   ADD KEY `fk_Report_Training1_idx` (`Aanvraag_id`);
 
 --
--- Indexen voor tabel `sporter`
+-- Indexes for table `sporter`
 --
 ALTER TABLE `sporter`
   ADD PRIMARY KEY (`Sporter_id`),
@@ -313,14 +312,14 @@ ALTER TABLE `sporter`
   ADD KEY `fk_Sporter_Gebruiker1_idx` (`Gebruiker_id`);
 
 --
--- Indexen voor tabel `status`
+-- Indexes for table `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`Status_id`),
   ADD UNIQUE KEY `Status_id_UNIQUE` (`Status_id`);
 
 --
--- Indexen voor tabel `trainer`
+-- Indexes for table `trainer`
 --
 ALTER TABLE `trainer`
   ADD PRIMARY KEY (`Trainer_id`),
@@ -329,7 +328,7 @@ ALTER TABLE `trainer`
   ADD KEY `fk_Trainer_Gebruiker1_idx` (`Gebruiker_id`);
 
 --
--- Indexen voor tabel `training`
+-- Indexes for table `training`
 --
 ALTER TABLE `training`
   ADD PRIMARY KEY (`Training_id(255)`),
@@ -337,7 +336,7 @@ ALTER TABLE `training`
   ADD KEY `fk_Training_Aanvraag1_idx` (`Aanvraag_id`);
 
 --
--- Indexen voor tabel `trainingslot`
+-- Indexes for table `trainingslot`
 --
 ALTER TABLE `trainingslot`
   ADD PRIMARY KEY (`Trainingslot_id`),
@@ -345,31 +344,31 @@ ALTER TABLE `trainingslot`
   ADD KEY `fk_Trainingslot_Trainer1_idx` (`Trainer_id`);
 
 --
--- Beperkingen voor geëxporteerde tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Beperkingen voor tabel `aanvraag`
+-- Constraints for table `aanvraag`
 --
 ALTER TABLE `aanvraag`
   ADD CONSTRAINT `fk_Aanvraag_Sporter1` FOREIGN KEY (`Sporter_id`) REFERENCES `sporter` (`Sporter_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Aanvraag_Trainingslot1` FOREIGN KEY (`Trainingslot_id`) REFERENCES `trainingslot` (`Trainingslot_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Beperkingen voor tabel `favorietetrainer`
+-- Constraints for table `favorietetrainer`
 --
 ALTER TABLE `favorietetrainer`
   ADD CONSTRAINT `fk_FavorieteTrainer_Sporter1` FOREIGN KEY (`Sporter_id`) REFERENCES `sporter` (`Sporter_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_FavorieteTrainer_Trainer1` FOREIGN KEY (`Trainer_id`) REFERENCES `trainer` (`Trainer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Beperkingen voor tabel `gebruiker`
+-- Constraints for table `gebruiker`
 --
 ALTER TABLE `gebruiker`
   ADD CONSTRAINT `fk_Gebruiker_Geslacht` FOREIGN KEY (`Geslacht_Geslacht_id`) REFERENCES `geslacht` (`Geslacht_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Beperkingen voor tabel `report`
+-- Constraints for table `report`
 --
 ALTER TABLE `report`
   ADD CONSTRAINT `fk_Report_Sporter1` FOREIGN KEY (`Sporter_id`) REFERENCES `sporter` (`Gebruiker_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -378,25 +377,25 @@ ALTER TABLE `report`
   ADD CONSTRAINT `fk_Report_Training1` FOREIGN KEY (`Aanvraag_id`) REFERENCES `training` (`Aanvraag_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Beperkingen voor tabel `sporter`
+-- Constraints for table `sporter`
 --
 ALTER TABLE `sporter`
   ADD CONSTRAINT `fk_Sporter_Gebruiker1` FOREIGN KEY (`Gebruiker_id`) REFERENCES `gebruiker` (`Gebruiker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Beperkingen voor tabel `trainer`
+-- Constraints for table `trainer`
 --
 ALTER TABLE `trainer`
   ADD CONSTRAINT `fk_Trainer_Gebruiker1` FOREIGN KEY (`Gebruiker_id`) REFERENCES `gebruiker` (`Gebruiker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Beperkingen voor tabel `training`
+-- Constraints for table `training`
 --
 ALTER TABLE `training`
   ADD CONSTRAINT `fk_Training_Aanvraag1` FOREIGN KEY (`Aanvraag_id`) REFERENCES `aanvraag` (`Aanvraag_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Beperkingen voor tabel `trainingslot`
+-- Constraints for table `trainingslot`
 --
 ALTER TABLE `trainingslot`
   ADD CONSTRAINT `fk_Trainingslot_Trainer1` FOREIGN KEY (`Trainer_id`) REFERENCES `trainer` (`Trainer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
