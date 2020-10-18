@@ -1,5 +1,5 @@
 <?php 
-// Creating a connection
+// Ctestreating a connection
 $user = $_GET['user'];
 $pass = $_GET['pass'];
 $db = $_GET['db'];
