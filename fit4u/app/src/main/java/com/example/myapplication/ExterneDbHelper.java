@@ -52,7 +52,12 @@ public class ExterneDbHelper {
 
      */
 
+    public String getPassword(String mail) {
+        JSONArray arr = rawQuery("SELECT * from gebruiker");
 
+        // return "ww123"
+        return null;
+    }
 
     public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslach_id) {
         return rawQuery("INSERT INTO `gebruiker` ( " + Gebruiker_ID + " , `Naam`, `Email`, `Wachtwoord`, `Leeftijd`, `Geslacht_id`, `Adres`, `Profielfoto`, `Bio`, `Geslacht_Geslacht_id`)");
