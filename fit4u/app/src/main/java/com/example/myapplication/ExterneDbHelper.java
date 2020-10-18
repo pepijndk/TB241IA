@@ -52,11 +52,11 @@ public class ExterneDbHelper {
 
      */
 
-    public String getPassword(String mail) {
-        JSONArray arr = rawQuery("SELECT * from gebruiker");
-
+    public String getPassword(String emailadress) {
+        JSONArray arr = rawQuery("SELECT Wachtwoord FROM gebruiker WHERE Email = " + emailadress);
+        String res = arr.toString();
         // return "ww123"
-        return null;
+        return res;
     }
 
     public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslach_id) {
