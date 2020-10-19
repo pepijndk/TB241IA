@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
         try {
             trainers = dbHelper.getNearbyTrainers();
+            dbHelper.saveAanvraag(5000, 5001, 3);
         } catch (JSONException e) {
             e.printStackTrace();
         }

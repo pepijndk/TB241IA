@@ -70,8 +70,8 @@ public class ExterneDbHelper {
         return rawQuery("INSERT INTO `gebruiker` ( " + Gebruiker_ID + " , " + Naam + " , " + Email + " , " + Wachtwoord + " , " + Leeftijd + ", " + Geslacht_id + " , " + Adres + " , " + Profielfoto + " , " + Bio + " , " + Geslacht_Geslacht_id + " ) ");
     }
 
-    public JSONArray saveAanvraag(int Aanvraag_id,int Sporter_id,int Trainingslot_id,java.sql.Timestamp Tijdstip_aanvraag) {
-        return rawQuery("INSERT INTO `aanvraag` ( " + Aanvraag_id + ", " + Sporter_id + ", " + Trainingslot_id + ", " + Tijdstip_aanvraag + " ) ");
+    public JSONArray saveAanvraag(int Aanvraag_id,int Sporter_id,int Trainingslot_id) {
+        return rawQuery("INSERT INTO `aanvraag` ( " + Aanvraag_id + ", " + Sporter_id + ", " + Trainingslot_id + ") ");
     }
 
     // todo
