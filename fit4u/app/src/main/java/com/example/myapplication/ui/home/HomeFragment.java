@@ -45,10 +45,6 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         RecyclerViewClickListener listener = (view, position) -> {
-            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-
-
-
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             NavDirections action = HomeFragmentDirections.actionNavigationHomeToNavigationTrainerProfile().setIndex(position);
             navController.navigate(action);
@@ -60,7 +56,6 @@ public class HomeFragment extends Fragment {
         try {
             // fetch data
             trainers = dbHelper.getNearbyTrainers();
-            dbHelper.saveAanvraag(5000, 5001, 3);
         } catch (JSONException e) {
             e.printStackTrace();
         }

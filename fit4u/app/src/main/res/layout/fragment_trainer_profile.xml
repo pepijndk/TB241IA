@@ -7,31 +7,19 @@
     android:background="#C20022"
     tools:context=".TrainerProfileFragment">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="113dp"
-        android:layout_height="83dp"
-        android:src="@drawable/profiel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
-
     <TextView
         android:id="@+id/trainerName"
         android:layout_width="312dp"
         android:layout_height="28dp"
-        android:layout_marginTop="20dp"
         android:text="Firstname Lastname"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052" />
 
     <TextView
         android:id="@+id/trainerLocation"
@@ -86,7 +74,7 @@
         app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSave"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.03" />
 
     <TextView
         android:id="@+id/textUpcoming"
@@ -106,9 +94,9 @@
 
     <TextView
         android:id="@+id/textGender"
-        android:layout_width="66dp"
+        android:layout_width="142dp"
         android:layout_height="30dp"
-        android:text="Gender:"
+        android:text="Gender: Male"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,51 +105,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textData"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/valueGender"
-        android:layout_width="74dp"
-<<<<<<< HEAD
-        android:layout_height="28dp"
-        android:text="Male"
-=======
-        android:layout_height="30dp"
-        android:text="None"
->>>>>>> e540c0e8aa34d02f4378e790f52031d9de5f4138
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textData"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.392" />
-
-    <TextView
-        android:id="@+id/valueSport"
-        android:layout_width="74dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="28dp"
-        android:text="-"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textData"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textData"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/valuePrice"
-        android:layout_width="74dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="56dp"
-        android:text="None"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textData"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textPrice"
-        app:layout_constraintTop_toBottomOf="@+id/textData"
-        app:layout_constraintVertical_bias="0.008" />
 
     <TextView
         android:id="@+id/textSport"
@@ -173,8 +116,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textData"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435" />
+        app:layout_constraintTop_toBottomOf="@+id/textGender"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textPrice"
@@ -184,18 +127,20 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.002"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textData"
         app:layout_constraintTop_toBottomOf="@+id/textSport"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/upcomingTimeslots"
         android:layout_width="412dp"
         android:layout_height="265dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUpcoming"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.237" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

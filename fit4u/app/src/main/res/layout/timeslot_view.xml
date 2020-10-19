@@ -4,17 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="100dp"
     android:orientation="vertical">
 
 
     <TextView
-        android:id="@+id/item_trainer_name"
+        android:id="@+id/item_trainer_sport"
         android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:text="Naam"
-        android:textSize="30sp"
+        android:text="Sport"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
@@ -28,10 +28,17 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_weight="1"
-        android:text="TextView"
+        android:text="Datum"
         android:textSize="18sp" />
 
-
+    <TextView
+        android:id="@+id/item_trainer_duur"
+        android:layout_width="371dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_weight="1"
+        android:text="duur"
+        android:textSize="18sp" />
 
 
 </LinearLayout>

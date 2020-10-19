@@ -115,12 +115,34 @@ public class ExterneDbHelper {
 
 
     public ArrayList<Trainer> getFavouriteTrainers(int gebruikerID) throws JSONException {
-        JSONArray arr =  rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker, sporter " +
+        JSONObject sporter = (JSONObject) rawQuery( "Select * FROM gebruiker, sporter WHERE sporter.Gebruiker_id = " + gebruikerID).get(0);
+
+        String sporterId = (String) sporter.get("Sporter_id");
+        Log.d("Sporter id",sporterId);
+
+
+        JSONArray arr =  rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker " +
                 "WHERE trainer.Trainer_id = favorietetrainer.Trainer_id " +
                 "AND gebruiker.Gebruiker_ID = trainer.Gebruiker_id " +
-                "AND gebruiker.Gebruiker_ID = sporter.Gebruiker_id" +
-                "AND gebruiker.Gebruiker_ID = " + gebruikerID);
-        return null;
+                "AND favorietetrainer.Sporter_id = " + sporterId);
+
+        ArrayList<Trainer> res = new ArrayList<>();
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj= (JSONObject) arr.get(i);
+
+            int id = (int) obj.getInt("Gebruiker_ID");
+            String naam = (String) obj.get("Naam");
+            String email= (String) obj.get("Email");
+            int leeftijd = (int) obj.getInt("Leeftijd");
+            int geslacht = (int) obj.getInt("Geslacht_id");
+            String adres = (String) obj.get("Adres");
+            String bio = "";
+            if (!obj.isNull("bio")) bio = (String) obj.get("Bio");
+            int idTrainer = (int) obj.getInt("Trainer_id");
+            int uurloon = (int) obj.getInt("Uurloon");
+            res.add(new Trainer(id, naam, email, leeftijd, geslacht, adres, bio, idTrainer, uurloon));
+        }
+        return res;
 
     }
 
@@ -150,8 +172,21 @@ public class ExterneDbHelper {
         return rawQuery("SELECT * FROM training, aanvraag, trainingslot WHERE trainingslot.Trainingslot_id = aanvraag.Trainingslot_id AND aanvraag.Aanvraag_id = training.Aanvraag_id AND Sporter_id = " + sporterId);
     }
 
-    public JSONArray getUpcomingTrainingsOfTrainer(int trainerId) {
-        return rawQuery( "SELECT * FROM trainingslot WHERE Trainer_id = " + trainerId);
+    public ArrayList<Timeslot> getUpcomingTrainingsOfTrainer(int trainerId) throws JSONException {
+        JSONArray arr = rawQuery("SELECT * FROM Trainingslot WHERE Trainer_id = " + trainerId);
+
+        ArrayList<Timeslot> res = new ArrayList<>();
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj= (JSONObject) arr.get(i);
+
+            int id = (int) obj.getInt("Trainingslot_id");
+            String beschrijving = (String) obj.get("Beschrijving");
+            String datum = (String) obj.get("Datum");
+            int duur = (int) obj.getInt("Duur");
+
+            res.add(new Timeslot(id, beschrijving, datum, duur));
+        }
+        return res;
     }
     // Private functions, do not touch
     private String sendHttpRequest(String url) {

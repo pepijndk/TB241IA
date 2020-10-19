@@ -18,7 +18,11 @@
         android:id="@+id/navigation_trainers"
         android:name="com.example.myapplication.ui.trainers.TrainersFragment"
         android:label="fragment_trainers"
-        tools:layout="@layout/fragment_trainers" />
+        tools:layout="@layout/fragment_trainers" >
+        <action
+            android:id="@+id/action_navigation_trainers_to_navigation_trainer_profile"
+            app:destination="@id/navigation_trainer_profile" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"

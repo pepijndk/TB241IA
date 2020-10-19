@@ -7,6 +7,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +18,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.ui.home.HomeFragmentDirections;
 import com.example.myapplication.ui.home.HomeViewModel;
 
 import org.json.JSONException;
@@ -28,7 +33,7 @@ public class TrainerProfileFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
 
     private HomeViewModel homeViewModel;
-    private List<Trainer> trainers;
+    private List<Timeslot> slots;
 
 
     private TrainerProfileViewModel mViewModel;
@@ -49,11 +54,11 @@ public class TrainerProfileFragment extends Fragment {
         Trainer trainer = null;
         try {
             trainer = dbHelper.getTrainerProfileWithIndex(index);
+            slots = dbHelper.getUpcomingTrainingsOfTrainer(trainer.getIdTrainer());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Log.d("trainer!!: ", trainer.getNaam());
 
         TextView name = (TextView) root.findViewById(R.id.trainerName);
         name.setText(trainer.getNaam());
@@ -61,9 +66,24 @@ public class TrainerProfileFragment extends Fragment {
         TextView location = (TextView) root.findViewById(R.id.trainerLocation);
         location.setText(trainer.getAdres());
 
-        TextView price = (TextView) root.findViewById(R.id.valuePrice);
-        price.setText(Integer.toString(trainer.getUurloon()));
+        TextView price = (TextView) root.findViewById(R.id.textPrice);
+        price.setText("Price: " + Integer.toString(trainer.getUurloon()));
 
+        RecyclerViewClickListener listener = (view, position) -> {
+            Toast.makeText(getContext(), "Request sent " + position, Toast.LENGTH_SHORT).show();
+        };
+
+        Log.d("amount of slots: ", "" + slots.size());
+
+        // setup recyclerview
+        recyclerView = (RecyclerView) root.findViewById(R.id.upcomingTimeslots);
+        recyclerView.setHasFixedSize(true);
+
+        // setup recyclerview
+        layoutManager = new LinearLayoutManager(root.getContext()); // may be wrong
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new TimeslotAdapter(slots, listener);
+        recyclerView.setAdapter(mAdapter);
 
 
         return root;

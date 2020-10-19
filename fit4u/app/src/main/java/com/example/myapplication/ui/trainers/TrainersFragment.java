@@ -12,6 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +23,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.RecyclerViewClickListener;
 import com.example.myapplication.Trainer;
 import com.example.myapplication.TrainerAdapter;
+import com.example.myapplication.User;
+import com.example.myapplication.ui.home.HomeFragmentDirections;
 import com.example.myapplication.ui.home.HomeViewModel;
 
 import org.json.JSONException;
@@ -45,13 +50,15 @@ public class TrainersFragment extends Fragment {
 
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
         try {
-            trainers = dbHelper.getNearbyTrainers();
+            trainers = dbHelper.getFavouriteTrainers(User.getId());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         RecyclerViewClickListener listener = (view, position) -> {
-            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+            NavDirections action = TrainersFragmentDirections.actionNavigationTrainersToNavigationTrainerProfile().setIndex(position);
+            navController.navigate(action);
         };
 
 
