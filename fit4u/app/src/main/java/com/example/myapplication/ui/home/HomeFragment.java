@@ -60,6 +60,7 @@ public class HomeFragment extends Fragment {
         try {
             // fetch data
             trainers = dbHelper.getNearbyTrainers();
+            dbHelper.saveAanvraag(5000, 5001, 3);
         } catch (JSONException e) {
             e.printStackTrace();
         }
