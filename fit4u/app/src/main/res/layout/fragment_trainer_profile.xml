@@ -53,7 +53,7 @@
         android:layout_height="45dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
-        android:text="Save"
+        android:text="Favourite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
@@ -107,8 +107,8 @@
 
 
     <TextView
-        android:id="@+id/textSport"
-        android:layout_width="66dp"
+        android:id="@+id/textBio"
+        android:layout_width="396dp"
         android:layout_height="30dp"
         android:text="Sport:"
         android:textSize="14sp"
@@ -129,7 +129,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textData"
-        app:layout_constraintTop_toBottomOf="@+id/textSport"
+        app:layout_constraintTop_toBottomOf="@+id/textBio"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView

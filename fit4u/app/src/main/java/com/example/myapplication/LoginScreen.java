@@ -25,7 +25,6 @@ public class LoginScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
-        getActionBar().setTitle("Login");
 
         invoerEmailadress = findViewById(R.id.etEmailadress);
         invoerPassword = findViewById(R.id.etPassword);

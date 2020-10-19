@@ -66,6 +66,9 @@ public class TrainerProfileFragment extends Fragment {
         TextView location = (TextView) root.findViewById(R.id.trainerLocation);
         location.setText(trainer.getAdres());
 
+        TextView bio = (TextView) root.findViewById(R.id.textBio);
+        bio.setText("bio: " + trainer.getBio());
+
         TextView price = (TextView) root.findViewById(R.id.textPrice);
         price.setText("Price: " + Integer.toString(trainer.getUurloon()));
 
