@@ -66,8 +66,12 @@ public class ExterneDbHelper {
         return obj;
     }
 
-    public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslach_id) {
-        return rawQuery("INSERT INTO `gebruiker` ( " + Gebruiker_ID + " , `Naam`, `Email`, `Wachtwoord`, `Leeftijd`, `Geslacht_id`, `Adres`, `Profielfoto`, `Bio`, `Geslacht_Geslacht_id`)");
+    public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,int Geslacht_id, Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslacht_id) {
+        return rawQuery("INSERT INTO `gebruiker` ( " + Gebruiker_ID + " , " + Naam + " , " + Email + " , " + Wachtwoord + " , " + Leeftijd + ", " + Geslacht_id + " , " + Adres + " , " + Profielfoto + " , " + Bio + " , " + Geslacht_Geslacht_id + " ) ");
+    }
+
+    public JSONArray saveAanvraag(int Aanvraag_id,int Sporter_id,int Trainingslot_id,java.sql.Timestamp Tijdstip_aanvraag) {
+        return rawQuery("INSERT INTO `aanvraag` ( " + Aanvraag_id + ", " + Sporter_id + ", " + Trainingslot_id + ", " + Tijdstip_aanvraag + " ) ");
     }
 
     // todo
@@ -84,19 +88,18 @@ public class ExterneDbHelper {
         String bio = "";
         if (!obj.isNull("bio")) bio = (String) obj.get("Bio");
         return new Gebruiker(id, naam, email, leeftijd, geslacht, adres, bio);
-
-
     }
 
     public JSONArray getTrainerProfile(int trainerId) {
         return rawQuery("SELECT * FROM trainer WHERE Trainer_id = " + trainerId);
     }
 
-    public ArrayList<Trainer> getFavouriteTrainers(int sporterId) throws JSONException { // deze moet gedaan worden met een gebruiker id
+    public ArrayList<Trainer> getFavouriteTrainers(int gebruikerID) throws JSONException {
         JSONArray arr =  rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker, sporter " +
                 "WHERE trainer.Trainer_id = favorietetrainer.Trainer_id " +
                 "AND gebruiker.Gebruiker_ID = trainer.Gebruiker_id " +
-                "AND sporter.Sporter_id = " + sporterId); // ook nog joinen met gebruiker
+                "AND gebruiker.Gebruiker_ID = sporter.Gebruiker_id" +
+                "AND gebruiker.Gebruiker_ID = " + gebruikerID);
         return null;
 
     }
@@ -127,7 +130,9 @@ public class ExterneDbHelper {
         return rawQuery("SELECT * FROM training, aanvraag, trainingslot WHERE trainingslot.Trainingslot_id = aanvraag.Trainingslot_id AND aanvraag.Aanvraag_id = training.Aanvraag_id AND Sporter_id = " + sporterId);
     }
 
-    
+    public JSONArray getUpcomingTrainingsOfTrainer(int trainerId) {
+        return rawQuery( "SELECT * FROM training, aanvraag, trainingslot WHERE trainingslot.Trainingslot_id = aanvraag.Trainingslot_id AND aanvraag.Aanvraag_id = training.Aanvraag_id AND Trainer_id = " + trainerId);
+    }
 
     // Private functions, do not touch
     private String sendHttpRequest(String url) {
