@@ -86,7 +86,7 @@ public class ExterneDbHelper {
         int geslacht = (int) obj.getInt("Geslacht_id");
         String adres = (String) obj.get("Adres");
         String bio = "";
-        if (!obj.isNull("bio")) bio = (String) obj.get("Bio");
+        if (!obj.isNull("Bio")) bio = (String) obj.get("Bio");
         return new Gebruiker(id, naam, email, leeftijd, geslacht, adres, bio);
     }
 
