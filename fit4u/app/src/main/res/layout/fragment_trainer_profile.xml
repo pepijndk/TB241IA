@@ -120,8 +120,13 @@
     <TextView
         android:id="@+id/valueGender"
         android:layout_width="74dp"
+<<<<<<< HEAD
+        android:layout_height="28dp"
+        android:text="Male"
+=======
         android:layout_height="30dp"
         android:text="None"
+>>>>>>> e540c0e8aa34d02f4378e790f52031d9de5f4138
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textData"
@@ -135,7 +140,7 @@
         android:layout_width="74dp"
         android:layout_height="30dp"
         android:layout_marginTop="28dp"
-        android:text="None"
+        android:text="-"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textData"

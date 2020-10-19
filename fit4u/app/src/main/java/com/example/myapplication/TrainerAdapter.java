@@ -14,28 +14,37 @@ import java.util.List;
 
 public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHolder> {
     private List<Trainer> mDataset;
+    private RecyclerViewClickListener mListener;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         // each data item is just a string in this case
         public TextView textViewName;
         public TextView textViewLocation;
+        private RecyclerViewClickListener mListener;
 //        private Context context;
 
-        public MyViewHolder(View v) {
+        public MyViewHolder(View v, RecyclerViewClickListener listener) {
             super(v);
             this.textViewName = (TextView) v.findViewById(R.id.item_trainer_name);
             this.textViewLocation = (TextView) v.findViewById(R.id.item_trainer_location);
-//            this.context = context;
-            //v.setOnClickListener(this);
+            mListener = listener;
+            v.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mListener.onClick(view, getAdapterPosition());
         }
     }
 
+
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TrainerAdapter(List<Trainer> myDataset) {
+    public TrainerAdapter(List<Trainer> myDataset, RecyclerViewClickListener listener) {
         mDataset = myDataset;
+        mListener = listener;
     }
 
     // Create new views (invoked by the layout manager)
@@ -54,7 +63,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
 //                .inflate(R.layout.trainer_view, parent, false);
 
 
-        MyViewHolder vh = new MyViewHolder(contactView);
+        MyViewHolder vh = new MyViewHolder(contactView, mListener);
         return vh;
     }
 
@@ -77,7 +86,6 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
             holder.itemView.setBackgroundColor(Color.parseColor("#C61131"));
             //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
         }
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)

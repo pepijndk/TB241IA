@@ -94,6 +94,26 @@ public class ExterneDbHelper {
         return rawQuery("SELECT * FROM trainer WHERE Trainer_id = " + trainerId);
     }
 
+
+    public Trainer getTrainerProfileWithIndex(int index) throws JSONException {
+        JSONArray arr =  rawQuery("SELECT * FROM trainer, gebruiker WHERE trainer.Gebruiker_id = gebruiker.Gebruiker_ID");
+
+        JSONObject obj= (JSONObject) arr.get(index);
+
+        int id = (int) obj.getInt("Gebruiker_ID");
+        String naam = (String) obj.get("Naam");
+        String email= (String) obj.get("Email");
+        int leeftijd = (int) obj.getInt("Leeftijd");
+        int geslacht = (int) obj.getInt("Geslacht_id");
+        String adres = (String) obj.get("Adres");
+        String bio = "";
+        if (!obj.isNull("bio")) bio = (String) obj.get("Bio");
+        int idTrainer = (int) obj.getInt("Trainer_id");
+        int uurloon = (int) obj.getInt("Uurloon");
+        return new Trainer(id, naam, email, leeftijd, geslacht, adres, bio, idTrainer, uurloon);
+    }
+
+
     public ArrayList<Trainer> getFavouriteTrainers(int gebruikerID) throws JSONException {
         JSONArray arr =  rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker, sporter " +
                 "WHERE trainer.Trainer_id = favorietetrainer.Trainer_id " +
@@ -131,9 +151,8 @@ public class ExterneDbHelper {
     }
 
     public JSONArray getUpcomingTrainingsOfTrainer(int trainerId) {
-        return rawQuery( "SELECT * FROM training, aanvraag, trainingslot WHERE trainingslot.Trainingslot_id = aanvraag.Trainingslot_id AND aanvraag.Aanvraag_id = training.Aanvraag_id AND Trainer_id = " + trainerId);
+        return rawQuery( "SELECT * FROM trainingslot WHERE Trainer_id = " + trainerId);
     }
-
     // Private functions, do not touch
     private String sendHttpRequest(String url) {
         HttpURLConnection connection = null;
