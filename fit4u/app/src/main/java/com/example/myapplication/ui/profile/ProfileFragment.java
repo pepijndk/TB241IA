@@ -8,12 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.ExterneDbHelper;
 import com.example.myapplication.Gebruiker;
@@ -66,18 +68,16 @@ public class ProfileFragment extends Fragment {
 
         savebutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                savetext();
+            public void onClick(View v) { // naam bio city, age
+                try {
+                    dbHelper.updateData(name.getText().toString(), inputBio.getText().toString(), inputCity.getText().toString(), inputAge.getText().toString());
+                    Toast.makeText(getContext(), "Data updated", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
-
-            public void savetext () {
-                
-
-            }
-
-            }
-
-        );
+        });
 
     return root;
 

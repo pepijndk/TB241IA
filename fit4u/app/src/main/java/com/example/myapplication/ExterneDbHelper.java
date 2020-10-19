@@ -146,6 +146,12 @@ public class ExterneDbHelper {
 
     }
 
+    public void updateData(String naam, String bio, String city, String age) throws JSONException { //naam bio city, age
+        String q = "UPDATE gebruiker SET Naam = " + naam + ", Bio = " + bio + ", Adres =" +  city + ", age = " + age;
+        Log.d("q", q);
+        JSONArray arr =  rawQuery(q);
+    }
+
     public ArrayList<Trainer> getNearbyTrainers() throws JSONException {
         JSONArray arr =  rawQuery("SELECT * FROM trainer, gebruiker WHERE trainer.Gebruiker_id = gebruiker.Gebruiker_ID");
 
