@@ -33,6 +33,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
         }
     }
 
+
     // Provide a suitable constructor (depends on the kind of dataset)
     public TrainerAdapter(List<Trainer> myDataset) {
         mDataset = myDataset;
@@ -77,6 +78,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
             holder.itemView.setBackgroundColor(Color.parseColor("#C61131"));
             //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
         }
+        holder.bind(mDataset.get(position), itemClickListener);
 
     }
 

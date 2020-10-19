@@ -66,7 +66,10 @@ public class ExterneDbHelper {
         return obj;
     }
 
-    public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslach_id) {
+    // saveAanvraag(int trainingslot_id, tijd, sporter_id)
+    // TODO
+
+    public JSONArray saveData(int Gebruiker_ID,Character Naam,Character Email,Character Wachtwoord,int Leeftijd,Character Adres,Character Profielfoto,Character Bio,int Geslacht_Geslach_id) { //TODO test
         return rawQuery("INSERT INTO `gebruiker` ( " + Gebruiker_ID + " , `Naam`, `Email`, `Wachtwoord`, `Leeftijd`, `Geslacht_id`, `Adres`, `Profielfoto`, `Bio`, `Geslacht_Geslacht_id`)");
     }
 
@@ -126,6 +129,10 @@ public class ExterneDbHelper {
     public JSONArray getUpcomingTrainingsOfSporter(int sporterId) {
         return rawQuery("SELECT * FROM training, aanvraag, trainingslot WHERE trainingslot.Trainingslot_id = aanvraag.Trainingslot_id AND aanvraag.Aanvraag_id = training.Aanvraag_id AND Sporter_id = " + sporterId);
     }
+
+    // Todo getUpcomingTrainingsSlotOfSporter
+
+
 
     
 

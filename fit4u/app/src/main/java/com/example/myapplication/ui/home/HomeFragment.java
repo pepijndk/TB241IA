@@ -24,38 +24,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
+    // vars for recyclerview
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
     private HomeViewModel homeViewModel;
     private List<Trainer> trainers;
 
+    // function gets called when fragment is laoded
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
+
+        // init view
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
 
+        // setup db helper
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
         try {
+            // fetch data
             trainers = dbHelper.getNearbyTrainers();
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        // setup recyclerview
         recyclerView = (RecyclerView) root.findViewById(R.id.trainerListView);
         recyclerView.setHasFixedSize(true);
 
+        // setup recyclerview
         layoutManager = new LinearLayoutManager(root.getContext()); // may be wrong
         recyclerView.setLayoutManager(layoutManager);
-
         mAdapter = new TrainerAdapter(trainers);
         recyclerView.setAdapter(mAdapter);
-
-
-
 
         return root;
     }
