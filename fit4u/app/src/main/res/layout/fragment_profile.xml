@@ -15,7 +15,7 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.007" />
@@ -24,71 +24,80 @@
         android:id="@+id/inputName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/textHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/textMail" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.141" />
 
     <EditText
         android:id="@+id/inputBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Bio"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/textHeader"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/inputCity" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.389" />
 
     <EditText
         android:id="@+id/inputAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Age"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/inputBio"
-        app:layout_constraintTop_toBottomOf="@+id/inputBio" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.478" />
 
     <EditText
         android:id="@+id/inputCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="City"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/textHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/inputGender" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
 
     <Spinner
         android:id="@+id/inputGender"
         android:layout_width="211dp"
         android:layout_height="32dp"
-        android:layout_marginTop="16dp"
         android:entries="@array/genders"
-        app:layout_constraintEnd_toEndOf="@+id/textHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/inputName" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.227" />
 
     <TextView
         android:id="@+id/textMail"
         android:layout_width="204dp"
         android:layout_height="31dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textHeader"
-        app:layout_constraintTop_toBottomOf="@+id/textHeader" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08" />
 </androidx.constraintlayout.widget.ConstraintLayout>
