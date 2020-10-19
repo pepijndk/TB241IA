@@ -70,7 +70,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) { // naam bio city, age
                 try {
-                    dbHelper.updateData(name.getText().toString(), inputBio.getText().toString(), inputCity.getText().toString(), inputAge.getText().toString());
+                    dbHelper.updateData(User.getId(), name.getText().toString(), inputBio.getText().toString(), inputCity.getText().toString(), inputAge.getText().toString());
                     Toast.makeText(getContext(), "Data updated", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();

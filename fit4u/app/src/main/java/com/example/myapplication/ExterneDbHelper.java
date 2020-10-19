@@ -146,10 +146,12 @@ public class ExterneDbHelper {
 
     }
 
-    public void updateData(String naam, String bio, String city, String age) throws JSONException { //naam bio city, age
-        String q = "UPDATE gebruiker SET Naam = " + naam + ", Bio = " + bio + ", Adres =" +  city + ", age = " + age;
+    public void updateData(int id, String naam, String bio, String city, String age) throws JSONException { //naam bio city, age
+        String bioNew = "-";
+        if (bio.length() > 0) bioNew = bio;
+        String q = "UPDATE gebruiker SET Naam = '" + naam + "', Bio = '" + bioNew + "', Adres = '" +  city + "', Leeftijd = '" + age + "' WHERE Gebruiker_ID = " + id;
         Log.d("q", q);
-        JSONArray arr =  rawQuery(q);
+        rawQuery(q);
     }
 
     public ArrayList<Trainer> getNearbyTrainers() throws JSONException {
@@ -174,8 +176,26 @@ public class ExterneDbHelper {
     return res;
     }
 
-    public JSONArray getUpcomingTrainingsOfSporter(int sporterId) {
-        return rawQuery("SELECT * FROM training, aanvraag, trainingslot WHERE trainingslot.Trainingslot_id = aanvraag.Trainingslot_id AND aanvraag.Aanvraag_id = training.Aanvraag_id AND Sporter_id = " + sporterId);
+    public ArrayList<Timeslot> getUpcomingTrainingsOfSporter(int gebruikerID) throws JSONException {
+        JSONObject sporter = (JSONObject) rawQuery( "Select * FROM gebruiker, sporter WHERE sporter.Gebruiker_id = " + gebruikerID).get(0);
+
+        String sporterId = (String) sporter.get("Sporter_id");
+        Log.d("Sporter id",sporterId);
+
+        JSONArray arr = rawQuery("SELECT * FROM aanvraag, trainingslot where aanvraag.Trainingslot_id = trainingslot.Trainingslot_id AND Sporter_id = " + sporterId);
+
+        ArrayList<Timeslot> res = new ArrayList<>();
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj= (JSONObject) arr.get(i);
+
+            int id = (int) obj.getInt("Trainingslot_id");
+            String beschrijving = (String) obj.get("Beschrijving");
+            String datum = (String) obj.get("Datum");
+            int duur = (int) obj.getInt("Duur");
+
+            res.add(new Timeslot(id, beschrijving, datum, duur));
+        }
+        return res;
     }
 
     public ArrayList<Timeslot> getUpcomingTrainingsOfTrainer(int trainerId) throws JSONException {
