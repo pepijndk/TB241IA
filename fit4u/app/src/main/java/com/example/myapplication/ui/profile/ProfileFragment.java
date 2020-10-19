@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,12 +20,14 @@ import com.example.myapplication.Gebruiker;
 import com.example.myapplication.R;
 import com.example.myapplication.User;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel mViewModel;
     private Gebruiker gebruiker;
+    private Button savebutton;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -59,9 +62,27 @@ public class ProfileFragment extends Fragment {
         inputAge.setText(Integer.toString(gebruiker.getLeeftijd()), TextView.BufferType.EDITABLE);
 
 
+        savebutton = root.findViewById(R.id.button3);
 
-        return root;
+        savebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                savetext();
+            }
+
+            public void savetext () {
+                
+
+            }
+
+            }
+
+        );
+
+    return root;
+
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -69,5 +90,6 @@ public class ProfileFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         // TODO: Use the ViewModel
     }
+
 
 }
