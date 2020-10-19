@@ -34,6 +34,12 @@
         android:id="@+id/navigation_trainer_profile"
         android:name="com.example.myapplication.TrainerProfileFragment"
         android:label="fragment_trainer_profile"
-        tools:layout="@layout/fragment_trainer_profile" />
+        tools:layout="@layout/fragment_trainer_profile">
+        <argument
+            android:name="index"
+            app:argType="integer"
+            android:defaultValue="0" />
+        </fragment>
+
 
 </navigation>

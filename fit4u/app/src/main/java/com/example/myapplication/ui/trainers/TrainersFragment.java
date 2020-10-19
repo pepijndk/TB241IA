@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.ExterneDbHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.RecyclerViewClickListener;
 import com.example.myapplication.Trainer;
 import com.example.myapplication.TrainerAdapter;
 import com.example.myapplication.ui.home.HomeViewModel;
@@ -48,6 +50,10 @@ public class TrainersFragment extends Fragment {
             e.printStackTrace();
         }
 
+        RecyclerViewClickListener listener = (view, position) -> {
+            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+        };
+
 
 
         recyclerView = (RecyclerView) root.findViewById(R.id.favouriteTrainerListView);
@@ -56,7 +62,7 @@ public class TrainersFragment extends Fragment {
         layoutManager = new LinearLayoutManager(root.getContext()); // may be wrong
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new TrainerAdapter(trainers);
+        mAdapter = new TrainerAdapter(trainers, listener);
         recyclerView.setAdapter(mAdapter);
 
         return root;

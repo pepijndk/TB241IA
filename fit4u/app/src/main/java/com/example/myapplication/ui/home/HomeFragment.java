@@ -4,19 +4,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.ExterneDbHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.RecyclerViewClickListener;
 import com.example.myapplication.Trainer;
 import com.example.myapplication.TrainerAdapter;
+import com.example.myapplication.TrainerProfileFragmentArgs;
 
 import org.json.JSONException;
 
@@ -40,6 +44,16 @@ public class HomeFragment extends Fragment {
         // init view
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        RecyclerViewClickListener listener = (view, position) -> {
+            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+
+
+
+            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+            NavDirections action = HomeFragmentDirections.actionNavigationHomeToNavigationTrainerProfile().setIndex(position);
+            navController.navigate(action);
+        };
+
 
         // setup db helper
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
@@ -57,7 +71,7 @@ public class HomeFragment extends Fragment {
         // setup recyclerview
         layoutManager = new LinearLayoutManager(root.getContext()); // may be wrong
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new TrainerAdapter(trainers);
+        mAdapter = new TrainerAdapter(trainers, listener);
         recyclerView.setAdapter(mAdapter);
 
         return root;

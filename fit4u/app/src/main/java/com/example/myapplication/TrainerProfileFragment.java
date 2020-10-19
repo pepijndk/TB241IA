@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.myapplication.ui.home.HomeViewModel;
 
@@ -40,21 +42,28 @@ public class TrainerProfileFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_trainer_profile, container, false);
 
+
+        int index = TrainerProfileFragmentArgs.fromBundle(getArguments()).getIndex();
+
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
+        Trainer trainer = null;
         try {
-            trainers = dbHelper.getFavouriteTrainers(User.getId());
+            trainer = dbHelper.getTrainerProfileWithIndex(index);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        recyclerView = (RecyclerView) root.findViewById(R.id.trainerListView);
-        recyclerView.setHasFixedSize(true);
+        Log.d("trainer!!: ", trainer.getNaam());
 
-        layoutManager = new LinearLayoutManager(root.getContext()); // may be wrong
-        recyclerView.setLayoutManager(layoutManager);
+        TextView name = (TextView) root.findViewById(R.id.trainerName);
+        name.setText(trainer.getNaam());
 
-        mAdapter = new TrainerAdapter(trainers);
-        recyclerView.setAdapter(mAdapter);
+        TextView location = (TextView) root.findViewById(R.id.trainerLocation);
+        location.setText(trainer.getAdres());
+
+        TextView price = (TextView) root.findViewById(R.id.valuePrice);
+        price.setText(Integer.toString(trainer.getUurloon()));
+
 
 
         return root;
