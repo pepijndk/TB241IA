@@ -55,9 +55,6 @@ public class TrainerProfileFragment extends Fragment {
         try {
             trainer = dbHelper.getTrainerProfileWithIndex(index);
             slots = dbHelper.getUpcomingTrainingsOfTrainer(trainer.getIdTrainer());
-            for(int i = 0; i < slots.size(); i++) {
-                Log.d("testing", slots.get(i).toString());
-            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

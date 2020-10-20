@@ -44,7 +44,6 @@ public class ProfileFragment extends Fragment {
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
         try {
              gebruiker = dbHelper.getUser(User.getId());
-             Log.d("testing", gebruiker.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

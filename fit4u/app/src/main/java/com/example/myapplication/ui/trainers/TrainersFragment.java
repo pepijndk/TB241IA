@@ -52,9 +52,6 @@ public class TrainersFragment extends Fragment {
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
         try {
             trainers = dbHelper.getFavouriteTrainers(User.getId());
-            for(int i = 0; i < trainers.size(); i++) {
-                Log.d("testing", trainers.get(i).toString());
-            }
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -48,9 +48,6 @@ public class DashboardFragment extends Fragment {
         ExterneDbHelper dbHelper = new ExterneDbHelper("http://10.0.2.2", "fit4udb2", "admin", "admin");
         try {
             slots = dbHelper.getUpcomingTrainingsOfSporter(User.getId());
-            for(int i = 0; i < slots.size(); i++) {
-                Log.d("testing", slots.get(i).toString());
-            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -57,9 +57,6 @@ public class HomeFragment extends Fragment {
         try {
             // fetch data
             trainers = dbHelper.getNearbyTrainers();
-            for(int i = 0; i < trainers.size(); i++) {
-                Log.d("testing", trainers.get(i).toString());
-            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
