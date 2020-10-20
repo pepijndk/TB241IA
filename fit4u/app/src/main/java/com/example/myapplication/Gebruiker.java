@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.Objects;
+
 public class Gebruiker {
     private int id;
     private String naam;
@@ -74,5 +76,37 @@ public class Gebruiker {
 
     public void setBio(String bio) {
         this.adres = bio;
+    }
+
+    @Override
+    public String toString() {
+        return "Gebruiker{" +
+                "id=" + id +
+                ", naam='" + naam + '\'' +
+                ", email='" + email + '\'' +
+                ", leeftijd=" + leeftijd +
+                ", geslacht=" + geslacht +
+                ", adres='" + adres + '\'' +
+                ", bio='" + bio + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gebruiker gebruiker = (Gebruiker) o;
+        return getId() == gebruiker.getId() &&
+                getLeeftijd() == gebruiker.getLeeftijd() &&
+                getGeslacht() == gebruiker.getGeslacht() &&
+                getNaam().equals(gebruiker.getNaam()) &&
+                getEmail().equals(gebruiker.getEmail()) &&
+                getAdres().equals(gebruiker.getAdres()) &&
+                getBio().equals(gebruiker.getBio());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getNaam(), getEmail(), getLeeftijd(), getGeslacht(), getAdres(), getBio());
     }
 }

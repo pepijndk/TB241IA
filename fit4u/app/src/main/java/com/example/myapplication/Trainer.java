@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.Objects;
+
 public class Trainer extends Gebruiker{
     private int idTrainer;
     private int uurloon;
@@ -24,5 +26,27 @@ public class Trainer extends Gebruiker{
 
     public void setUurloon(int uurloon) {
         this.uurloon = uurloon;
+    }
+
+    @Override
+    public String toString() {
+        return "Trainer{" +
+                "idTrainer=" + idTrainer +
+                ", uurloon=" + uurloon +
+                "} " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Trainer trainer = (Trainer) o;
+        return getIdTrainer() == trainer.getIdTrainer() &&
+                getUurloon() == trainer.getUurloon();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdTrainer(), getUurloon());
     }
 }

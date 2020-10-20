@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.Objects;
+
 public class Timeslot {
     private int id;
     private String datum;
@@ -43,5 +45,31 @@ public class Timeslot {
 
     public void setDuration(int duration) {
         Duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return "Timeslot{" +
+                "id=" + id +
+                ", datum='" + datum + '\'' +
+                ", beschrijving='" + beschrijving + '\'' +
+                ", Duration=" + Duration +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Timeslot timeslot = (Timeslot) o;
+        return getId() == timeslot.getId() &&
+                getDuration() == timeslot.getDuration() &&
+                getDatum().equals(timeslot.getDatum()) &&
+                getBeschrijving().equals(timeslot.getBeschrijving());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getDatum(), getBeschrijving(), getDuration());
     }
 }

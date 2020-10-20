@@ -118,7 +118,6 @@ public class ExterneDbHelper {
         JSONObject sporter = (JSONObject) rawQuery( "Select * FROM gebruiker, sporter WHERE sporter.Gebruiker_id = " + gebruikerID).get(0);
 
         String sporterId = (String) sporter.get("Sporter_id");
-        Log.d("Sporter id",sporterId);
 
 
         JSONArray arr =  rawQuery( "Select * FROM favorietetrainer, trainer, gebruiker " +
@@ -150,7 +149,6 @@ public class ExterneDbHelper {
         String bioNew = "-";
         if (bio.length() > 0) bioNew = bio;
         String q = "UPDATE gebruiker SET Naam = '" + naam + "', Bio = '" + bioNew + "', Adres = '" +  city + "', Leeftijd = '" + age + "' WHERE Gebruiker_ID = " + id;
-        Log.d("q", q);
         rawQuery(q);
     }
 
@@ -180,7 +178,6 @@ public class ExterneDbHelper {
         JSONObject sporter = (JSONObject) rawQuery( "Select * FROM gebruiker, sporter WHERE sporter.Gebruiker_id = " + gebruikerID).get(0);
 
         String sporterId = (String) sporter.get("Sporter_id");
-        Log.d("Sporter id",sporterId);
 
         JSONArray arr = rawQuery("SELECT * FROM aanvraag, trainingslot where aanvraag.Trainingslot_id = trainingslot.Trainingslot_id AND Sporter_id = " + sporterId);
 
@@ -271,7 +268,7 @@ public class ExterneDbHelper {
         return null;
     }
 
-    private JSONArray rawQuery(String sql) {
+    protected JSONArray rawQuery(String sql) {
         try {
             String result = queryDB(sql);
             return new JSONArray(result);

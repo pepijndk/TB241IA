@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,9 @@ public class HomeFragment extends Fragment {
         try {
             // fetch data
             trainers = dbHelper.getNearbyTrainers();
+            for(int i = 0; i < trainers.size(); i++) {
+                Log.d("testing", trainers.get(i).toString());
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
